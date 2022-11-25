@@ -1,0 +1,16 @@
+{
+	"name": "KQL script 1",
+	"properties": {
+		"content": {
+			"query": ".create table SalesTelemetry ( CustomerId:int32, ProductId:int32, Timestamp:datetime, Url:string)\n\n\nSalesTelemetry\n| where Url startswith \"/product/search\"\n| take 1000\n\n\nSalesTelemetry\n| where Url startswith \"/product/search\"\n| order by Timestamp desc\n| take 1000",
+			"metadata": {
+				"language": "kql"
+			},
+			"currentConnection": {
+				"poolName": "asadataexplorer801100",
+				"databaseName": "sales"
+			}
+		},
+		"type": "KqlQuery"
+	}
+}

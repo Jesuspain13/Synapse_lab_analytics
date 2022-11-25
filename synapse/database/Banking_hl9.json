@@ -1,0 +1,24 @@
+{
+	"name": "Banking_hl9",
+	"properties": {
+		"Name": "Banking_hl9",
+		"EntityType": "DATABASE",
+		"Description": "",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"DerivedModelDBInfo": "{\"ModelDirectives\":{\"BaseModel\":{\"Name\":\"Banking\",\"Version\":\"1.0.0\"}}}",
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://tempdata@asadatalake801100.dfs.core.windows.net/Banking_hl9",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "asaworkspace801100-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}
