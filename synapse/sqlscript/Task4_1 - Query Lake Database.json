@@ -2,12 +2,12 @@
 	"name": "Task4_1 - Query Lake Database",
 	"properties": {
 		"content": {
-			"query": "SELECT COUNT(*) FROM FactSales",
+			"query": "SELECT COUNT(*) FROM FactSale",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "default",
+				"databaseName": "Database1",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000
