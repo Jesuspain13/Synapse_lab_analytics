@@ -2,7 +2,7 @@
 	"name": "Task4_1 - Query Lake Database",
 	"properties": {
 		"content": {
-			"query": "SELECT COUNT(*) FROM FactSale",
+			"query": "SELECT COUNT(*) FROM FactSale\n\nSELECT TOP (100) [CustomerId] \n,[FirstName] \n,[LastName] \nFROM [Database1].[dbo].[Customer] ",
 			"metadata": {
 				"language": "sql"
 			},
