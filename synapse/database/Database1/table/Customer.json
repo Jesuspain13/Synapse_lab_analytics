@@ -17,8 +17,8 @@
 					"Name": "CustomerId",
 					"OriginDataTypeName": {
 						"TypeName": "integer",
-						"IsNullable": false,
 						"IsComplexType": false,
+						"IsNullable": false,
 						"Properties": {
 							"HIVE_TYPE_STRING": "integer"
 						}
@@ -30,8 +30,8 @@
 					"Description": "",
 					"OriginDataTypeName": {
 						"TypeName": "string",
-						"IsNullable": false,
 						"IsComplexType": false,
+						"IsNullable": false,
 						"Length": 256,
 						"Properties": {
 							"HIVE_TYPE_STRING": "string"
@@ -44,8 +44,8 @@
 					"Description": "",
 					"OriginDataTypeName": {
 						"TypeName": "string",
-						"IsNullable": false,
 						"IsComplexType": false,
+						"IsNullable": false,
 						"Length": 256,
 						"Properties": {
 							"HIVE_TYPE_STRING": "string"
@@ -60,7 +60,7 @@
 				"FormatType": "csv",
 				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
 				"Properties": {
-					"path": "abfss://database1-staging@asadatalake801100.dfs.core.windows.net/",
+					"path": "abfss://database1-staging@asadatalake801100.dfs.core.windows.net/*",
 					"delimiter": ",",
 					"multiLine": "false",
 					"firstRowAsHeader": "false",
@@ -73,7 +73,7 @@
 			},
 			"Source": {
 				"Provider": "ADLS",
-				"Location": "abfss://database1-staging@asadatalake801100.dfs.core.windows.net/",
+				"Location": "abfss://database1-staging@asadatalake801100.dfs.core.windows.net/*",
 				"Properties": {
 					"LinkedServiceName": "asadatalake01",
 					"LocationSetToDatabaseDefault": false
@@ -91,8 +91,7 @@
 			"Description": "",
 			"DisplayFolderInfo": "{\"name\":\"Others\",\"colorCode\":\"\"}",
 			"PrimaryKeys": "CustomerId",
-			"spark.sql.sources.provider": "csv",
-			"sql:IsAppendOnly": false
+			"spark.sql.sources.provider": "csv"
 		},
 		"Retention": 0,
 		"Temporary": false,
