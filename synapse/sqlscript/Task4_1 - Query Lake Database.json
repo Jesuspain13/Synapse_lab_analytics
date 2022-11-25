@@ -1,0 +1,17 @@
+{
+	"name": "Task4_1 - Query Lake Database",
+	"properties": {
+		"content": {
+			"query": "SELECT COUNT(*) FROM FactSales",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLOnDemand01",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
