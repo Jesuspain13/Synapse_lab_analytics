@@ -1,0 +1,17 @@
+{
+	"name": "Task2 - Check new table from notebook",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [SaleKey]\n,[CityKey]\n,[CustomerKey]\n,[BillToCustomerKey]\n,[StockItemKey]\n,[DeliveryDateKey]\n,[SalespersonKey]\n,[WWIInvoiceID]\n,[Description]\n,[Package]\n,[Quantity]\n,[UnitPrice]\n,[TaxRate]\n,[TotalExcludingTax]\n,[TaxAmount]\n,[Profit]\n,[TotalIncludingTax]\n,[TotalDryItems]\n,[TotalChillerItems]\n,[LineageKey]\n,[InvoiceDateKey]\n FROM [wwi_staging].[Sale]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

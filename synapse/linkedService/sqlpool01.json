@@ -1,0 +1,12 @@
+{
+	"name": "sqlpool01",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=asaworkspace801100.database.windows.net;initial catalog=SQLPool01;user id=asa.sql.admin",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VAM0EyQzlERkEtNzVBNS00QUI1LUE1NDUtMURFQTBGRDJEQjYyX2RiNmI0MDNiLWViZTktNDg5ZC1hZDFkLTgzYTMzZTVmMDFjZiINCn0="
+		}
+	}
+}

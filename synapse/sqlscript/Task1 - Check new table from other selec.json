@@ -1,0 +1,17 @@
+{
+	"name": "Task1 - Check new table from other selec",
+	"properties": {
+		"content": {
+			"query": "SELECT * FROM QuarterlySales",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLOnDemand01",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
