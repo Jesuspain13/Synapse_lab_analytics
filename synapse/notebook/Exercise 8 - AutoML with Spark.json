@@ -4,7 +4,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "SparkPool01",
+			"referenceName": "SparkPool02",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -13,26 +13,38 @@
 			"executorMemory": "28g",
 			"executorCores": 4,
 			"numExecutors": 2,
-			"runAsWorkspaceSystemIdentity": false
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "854be528-8e3f-4681-9c8a-3c793f4e5bb7"
+			}
 		},
 		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
 			"language_info": {
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/f43f70f1-af80-4cd6-8ee6-e2f20bd5a8bf/resourceGroups/Synapse-AIAD-801100/providers/Microsoft.Synapse/workspaces/asaworkspace801100/bigDataPools/SparkPool01",
-				"name": "SparkPool01",
+				"id": "/subscriptions/f43f70f1-af80-4cd6-8ee6-e2f20bd5a8bf/resourceGroups/Synapse-AIAD-801100/providers/Microsoft.Synapse/workspaces/asaworkspace801100/bigDataPools/SparkPool02",
+				"name": "SparkPool02",
 				"type": "Spark",
-				"endpoint": "https://asaworkspace801100.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool01",
+				"endpoint": "https://asaworkspace801100.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool02",
 				"auth": {
 					"type": "AAD",
-					"authResource": "https://dev.azuresynapse.net",
-					"authHeader": null
+					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "2.4",
 				"nodeCount": 3,
 				"cores": 4,
-				"memory": 28
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 60
 		},
@@ -92,7 +104,8 @@
 					"\n",
 					"df = raw_data.toPandas()\n",
 					"print(\"Shape: \", df.shape)"
-				]
+				],
+				"execution_count": 1
 			},
 			{
 				"cell_type": "markdown",
@@ -116,7 +129,8 @@
 				},
 				"source": [
 					"display(df.iloc[:10, :])"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -129,7 +143,8 @@
 				},
 				"source": [
 					"Split the data into the train and test parts using a ratio of 80% train to 20% test.\n",
-					"\n"
+					"\n",
+					""
 				]
 			},
 			{
@@ -152,7 +167,8 @@
 					"raw_train, raw_test = raw_data.randomSplit([split_ratio, 1 - split_ratio], seed=seed)\n",
 					"print(\"Train: (rows, columns) = {}\".format((raw_train.count(), len(raw_train.columns))))\n",
 					"print(\"Test: (rows, columns) = {}\".format((raw_test.count(), len(raw_test.columns))))"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -195,7 +211,8 @@
 					"\n",
 					"experiment_name = \"aml-synapse-classification\"\n",
 					"experiment = Experiment(ws, experiment_name)"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -243,7 +260,8 @@
 					"                       overwrite = True,\n",
 					"                       show_progress = True)\n",
 					"ds_train = Dataset.Tabular.from_delimited_files(path = [(datastore, 'train-dataset/tabular/train.csv')])"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -301,7 +319,8 @@
 					"    \"featurization\": 'auto',\n",
 					"    \"verbosity\": logging.INFO,\n",
 					"    \"n_cross_validations\": 2}"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -339,7 +358,8 @@
 					"                             spark_context = sc,\n",
 					"                             model_explainability = True, \n",
 					"                             label_column_name =\"Rating\",**automl_settings)"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -376,7 +396,8 @@
 					"tags = {\"Synapse\": \"classification\"}\n",
 					"local_run = experiment.submit(automl_config, tags = tags)\n",
 					"local_run.wait_for_completion(show_output=True)"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -422,7 +443,8 @@
 					"best_run, fitted_model = local_run.get_output()\n",
 					"best_run.download_files(output_directory='./best_run')\n",
 					"best_run.properties"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -474,7 +496,8 @@
 					")\n",
 					"\n",
 					"model_signature"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -520,7 +543,8 @@
 					"    mlflow.onnx.log_model(xmodel, artifact_path, signature=model_signature)\n",
 					"    # Register the model to AML model registry\n",
 					"    mlflow.register_model(\"runs:/\" + run.info.run_id + \"/\" + artifact_path, \"aml-synapse-classifier\")"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -552,7 +576,8 @@
 				},
 				"source": [
 					"raw_test.createOrReplaceTempView(\"TestData\")"
-				]
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "markdown",
@@ -592,7 +617,8 @@
 					"\n",
 					"df.write.\n",
 					"  synapsesql(\"SQLPool01.wwi_ml.CustomerTest\", Constants.INTERNAL)"
-				]
+				],
+				"execution_count": null
 			}
 		]
 	}
